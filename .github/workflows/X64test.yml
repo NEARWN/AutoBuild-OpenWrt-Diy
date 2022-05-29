@@ -66,7 +66,7 @@ jobs:
         chmod +x $DIY_P1_SH
         cd openwrt
         echo "src-git ssrp https://github.com/fw876/helloworld.git" >> ./feeds.conf.default
-        git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/music
+        git clone https://github.com/1wrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
         $GITHUB_WORKSPACE/$DIY_P1_SH
         
     - name: Update feeds

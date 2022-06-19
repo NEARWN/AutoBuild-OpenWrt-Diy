@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: OpenWrt firmware X64 test
+name: OpenWrt firmware X64 passwall
 
 on:
   repository_dispatch:
@@ -65,7 +65,8 @@ jobs:
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
         cd openwrt
-        echo "src-git ssrp https://github.com/fw876/helloworld.git" >> ./feeds.conf.default
+        git clone https://github.com/xiaorouji/openwrt-passwall2.git package/passwall2
+        git clone https://github.com/xiaorouji/openwrt-passwall.git package/passwall
         $GITHUB_WORKSPACE/$DIY_P1_SH
         
     - name: Update feeds
@@ -126,5 +127,5 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt firmware x64 test${{ env.FILE_DATE }}
+        name: OpenWrt firmware x64 passwall${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
